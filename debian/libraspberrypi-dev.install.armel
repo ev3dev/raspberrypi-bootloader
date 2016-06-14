@@ -1,0 +1,2 @@
+opt/vc/include/* /usr/include/raspberrypi/
+opt/vc/lib/lib*.a /usr/lib/raspberrypi/
