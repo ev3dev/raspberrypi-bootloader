@@ -4,6 +4,7 @@
 
 # Not using uscan since upstream does not always tag commits
 
+rm -r ../master.tar.gz
 gbp import-orig \
     --download https://github.com/raspberrypi/firmware/archive/master.tar.gz \
     --filter=modules/*
