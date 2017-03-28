@@ -1,3 +1,10 @@
+raspberrypi-firmware (1.20170324-1ev3dev1) testing; urgency=medium
+
+  * Imported Upstream version 1.20170324
+  * Target stretch
+
+ -- David Lechner <david@lechnology.com>  Tue, 28 Mar 2017 17:52:30 -0500
+
 raspberrypi-firmware (1.20170125-1ev3dev1) stable; urgency=medium
 
   * Imported Upstream version 1.20170125
