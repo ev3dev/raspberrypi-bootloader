@@ -1,5 +1,5 @@
 Source: raspberrypi-firmware
-Priority: extra
+Priority: optional
 Maintainer: David Lechner <david@lechnology.com>
 XSBC-Original-Maintainer: Alex Bradbury <asb@asbradbury.org>
 Build-Depends: debhelper (>= 8.0.0), quilt
