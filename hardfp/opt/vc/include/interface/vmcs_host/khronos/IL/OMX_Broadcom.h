@@ -2596,6 +2596,19 @@ The IL standard does not support a way to specify the Bayer order of Bayer image
 This control adds that missing functionality.
 */
 
+typedef struct OMX_PARAM_LENSSHADINGOVERRIDETYPE {
+   OMX_U32 nSize;
+   OMX_VERSIONTYPE nVersion;
+
+   OMX_BOOL bEnabled;                     /**< Enable the override grid */
+   OMX_U32 nGridCellSize;                 /**< size of each grid element. Assumes square grid */
+   OMX_U32 nWidth;                        /**< grid width */
+   OMX_U32 nStride;                       /**< grid stride (allows for padding) */
+   OMX_U32 nHeight;                       /**< grid height */
+   OMX_U32 nMemHandleTable;               /**< Handle for grid */
+   OMX_U32 nRefTransform;                 /**< Reference transform taken from raw header */
+} OMX_PARAM_LENSSHADINGOVERRIDETYPE;
+
 /* OMX_IndexConfigBrcmPowerMonitor: Deprecated.*/
 /*
 Deprecated. Do not use.
@@ -2622,6 +2635,21 @@ Most components require an nSliceHeight value which is a multiple of 16, but
 some components accepting any value >= nFrameHeight. Those ports/components will
 respond to OMX_GetParameter on this index with no error and bEnabled set to OMX_TRUE.
 */
+
+typedef struct OMX_CCMTYPE {
+   OMX_S32 sCcm[3][3];
+   OMX_S32 soffsets[3];
+} OMX_PARAM_CCMTYPE;
+
+typedef struct OMX_PARAM_CUSTOMCCMTYPE {
+   OMX_U32 nSize;
+   OMX_VERSIONTYPE nVersion;
+   OMX_U32 nPortIndex;
+
+   OMX_BOOL bEnabled;          /**< Enable the custom CCM. */
+   OMX_S32 xColorMatrix[3][3]; /**< Stored in signed Q16 format */
+   OMX_S32 nColorOffset[3];    /**<  */
+} OMX_PARAM_CUSTOMCCMTYPE;
 
 #endif
 /* File EOF */
