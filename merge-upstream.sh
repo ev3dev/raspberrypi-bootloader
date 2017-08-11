@@ -4,10 +4,12 @@
 
 # Not using uscan since upstream does not always tag commits
 
-rm -r ../master.tar.gz
-gbp import-orig \
-    --download https://github.com/raspberrypi/firmware/archive/master.tar.gz \
-    --filter=boot/kernel* \
-    --filter=extra/* \
-    --filter=modules/* \
-    --filter=opt/*
+wget -O - https://github.com/raspberrypi/firmware/archive/master.tar.gz | \
+    gunzip | tar --wildcards \
+        --delete firmware-master/modules \
+        --delete firmware-master/extra \
+        --delete firmware-master/boot/kernel* \
+        --delete firmware-master/boot/*.dtb \
+        --delete firmware-master/boot/overlays/*.dtbo \
+        --delete firmware-master/opt | gzip > ../rpi-bootloader.tar.gz
+gbp import-orig ../rpi-bootloader.tar.gz
