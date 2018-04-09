@@ -1,3 +1,9 @@
+raspberrypi-firmware (1.20180409-1ev3dev1) stable; urgency=medium
+
+  * New upstream version 1.20180409
+
+ -- David Lechner <david@lechnology.com>  Mon, 09 Apr 2018 14:56:36 -0500
+
 raspberrypi-firmware (1.20170808-1ev3dev1) testing; urgency=medium
 
   * debian/compat 8 > 10
