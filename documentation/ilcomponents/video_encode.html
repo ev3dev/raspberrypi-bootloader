@@ -29,6 +29,7 @@
 <tr><td bgcolor="#e0c0c0">
 <a href="camera.html">camera</a><br>
 <a href="egl_render.html">egl_render</a><br>
+<a href="hvs.html">hvs</a><br>
 <a href="isp.html">isp</a><br>
 <a href="rawcam.html">rawcam</a><br>
 <a href="video_decode.html">video_decode</a><br>
@@ -65,7 +66,7 @@ will also have <tt>OMX_BUFFERFLAG_ENDOFFRAME</tt> set.
 <p>
 <p>
 <table border="1" cellspacing="0" cellpadding="2"><tr><td>Port<td>Index<td>Notes
-<tr valign="top"><td rowspan="3">200<td><tt>OMX_IndexParamPortDefinition</tt>
+<tr valign="top"><td rowspan="4">200<td><tt>OMX_IndexParamPortDefinition</tt>
 <td> Query / set the format of the raw video frames. <tt>eColorFormat</tt>
   must be <tt>OMX_COLOR_FormatYUV420PackedPlanar</tt>, 
   <tt>OMX_COLOR_FormatYUV420PackedSemiPlanar</tt>, 
@@ -81,6 +82,8 @@ will also have <tt>OMX_BUFFERFLAG_ENDOFFRAME</tt> set.
 <td> Used to set up proprietary communication with the previous component.
  <tr valign="top"><td><tt><a href="prop.html#OMX_IndexConfigBrcmUseProprietaryCallback">OMX_IndexConfigBrcmUseProprietaryCallback</a></tt>
 <td> Forces use of proprietary tunnelling between ports.
+ <tr valign="top"><td><tt><a href="prop.html#OMX_IndexParamMinimumAlignment">OMX_IndexParamMinimumAlignment</a></tt>
+<td> Query the minimum alignment that the component requries on the port.
  <tr valign="top"><td rowspan="44">201<td><tt>OMX_IndexParamPortDefinition</tt>
 <td> Query / set the output format.  <tt>eCompressionFormat</tt> specifies
   the format to which to encode.  <tt>nBitrate</tt> specifies the target
@@ -143,7 +146,11 @@ will also have <tt>OMX_BUFFERFLAG_ENDOFFRAME</tt> set.
  <tr valign="top"><td><tt><a href="prop.html#OMX_IndexParamBrcmVideoAVC_LowDelayHRDEnable">OMX_IndexParamBrcmVideoAVC_LowDelayHRDEnable</a></tt>
 <td> Enable/Disable setting low_delay_hrd flag in H.264 header. "big_pictures" that violate the nominal CPB removal times due to the number of bits used by an access unit are permitted when the flag is set.
  <tr valign="top"><td><tt><a href="prop.html#OMX_IndexParamBrcmVideoAVCInlineHeaderEnable">OMX_IndexParamBrcmVideoAVCInlineHeaderEnable</a></tt>
-<td> Enable SPS/PPS insertion in the encoder bitstream. If this property is set then SPS/PPS will be output before each IDR frame or P=intrarefresh frame
+<td> Enable SPS/PPS insertion in the encoder bitstream. If this property is set then SPS/PPS
+  will be output before each IDR frame or P=intrarefresh frame.
+  Whilst designated as a Param, this property can now be changed while the component
+  and/or port is executing. The setting will be forwarded on to the codec to take
+  effect after the next IDR or P=intrarefresh frame.
  <tr valign="top"><td><tt><a href="prop.html#OMX_IndexParamBrcmVideoAVCSPSTimingEnable">OMX_IndexParamBrcmVideoAVCSPSTimingEnable</a></tt>
 <td> Enable the insertion of timing information into the SPS based on the specified output port frame rate.
  <tr valign="top"><td><tt><a href="prop.html#OMX_IndexParamBrcmVideoAVCInlineVectorsEnable">OMX_IndexParamBrcmVideoAVCInlineVectorsEnable</a></tt>
@@ -208,7 +215,7 @@ will also have <tt>OMX_BUFFERFLAG_ENDOFFRAME</tt> set.
   Requests an I-frame to be encoded next (it doesn't force a P-frame
   to be coded next if we are at the OMX_IndexConfigVideoAVCIntraPeriod
   value).
- <tr valign="top"><td><tt>OMX_IndexParamBrcmDroppableRunLength</tt>
+ <tr valign="top"><td><tt>OMX_IndexConfigBrcmDroppableRunLength</tt>
 <td> When used in conjunction with OMX_IndexParamBrcmDroppablePFrames, set the number
   of P frames to be treated as droppable before a reference is inserted. A value of
   1 is equivalent to OMX_IndexParamBrcmDroppablePFrames=OMX_FALSE, and if the value
