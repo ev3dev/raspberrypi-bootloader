@@ -4,7 +4,6 @@ Source: http://github.com/raspberrypi/firmware
 Files:
  opt/vc/bin/*
  opt/vc/lib/*
- opt/vc/sbin/*
  boot/*.bin boot/*.elf
 Copyright: 2006-2012 Broadcom Eurpe Ltd.
 License: Broadcom
